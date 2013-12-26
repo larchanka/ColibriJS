@@ -1,10 +1,10 @@
-Smallframework
+SmallFramework
 ===
 
 About
 ---
 
-**Smallframework** is javascript library for building simple client-side web applications. It has no any dependencies and uses [pure javascript](http://pure-javascript.org/) to work.
+**SmallFramework** is javascript library for building simple client-side web applications. It has no any dependencies and uses [pure javascript](http://pure-javascript.org/) to work.
 
 How to start?
 ---

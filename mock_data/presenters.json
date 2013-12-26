@@ -1,0 +1,20 @@
+{
+    "status" : "success",
+    "presenters" : [
+        {
+            "accountId" : "mikhail_larchanka",
+            "firstName" : "Mikhail",
+            "lastName" : "Larchanka"
+        },
+        {
+            "accountId" : "john_testing",
+            "firstName" : "John",
+            "lastName" : "Testing"
+        },
+        {
+            "accountId" : "edward_norton",
+            "firstName" : "Edward",
+            "lastName" : "Norton"
+        }
+    ]
+}

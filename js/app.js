@@ -21,11 +21,9 @@
                             "<li><a href=\"#/presenter/<%=presenters[i].accountId%>\"><%=presenters[i].firstName%> <%=presenters[i].lastName%></a></li>" +
                             "<% } %></ul>";
                 this.drawAppLoader();
-                this.request('GET', 'http://evbyminsd8734.minsk.epam.com/bin/epamsec/presenters.json', function (data) {
+                this.request('GET', '/mock_data/presenters.json', function (data) {
                     
-                    data.presenters = _global.sortByKey(data.presenters, 'firstName');
-                    
-                    _global.template(template, data);
+                    _global.template(template, {presenters: _global.sortByKey(data.presenters, 'firstName')});
                 }, function () {
                     _global.ajaxErrorTemplate();
                 });
@@ -33,12 +31,11 @@
         
             presenter : function (id) {
                 var template = "<h1>Presenter <%=presenter.firstName%> <%=presenter.lastName%></h1>" +
-                            "<ul>" +
-                            "<li>Position: <%=presenter.position%></li>" +
-                            "<li>Description: <br /><%=presenter.description%></li>" +
-                            "</ul>";
+                            "<p>" +
+                            "<br /><%=presenter.description%>" +
+                            "</p>";
                 this.drawAppLoader();
-                this.request('GET', 'http://evbyminsd8734.minsk.epam.com/bin/epamsec/presenter.json?presenter=' + id, function (data) {
+                this.request('GET', '/mock_data/' + id + '.json', function (data) {
                     _global.template(template, data);
                 }, function () {
                     _global.ajaxErrorTemplate();

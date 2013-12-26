@@ -1,0 +1,9 @@
+{
+    "status" : "success",
+    "presenter" : {
+        "accountId" : "mikhail_larchanka",
+        "firstName" : "Mikhail",
+        "lastName" : "Larchanka",
+        "description" : "Description"
+    }
+}
