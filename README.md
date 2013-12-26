@@ -10,6 +10,12 @@ How to start?
 ---
 
 View `index.html` and `js/app.js` for example.
+You need some server to be installed. Node.js server:
+
+* install [Node.js](http://nodejs.org/)
+* enter `npm install -g nws` in Terminal / Console / CMD
+* enter `cd PATH/TO/FOLDER/WITH/SMALLFRAMEWORK && nws` in Terminal / Console / CMD
+* open [`http://localhost:3030/`](http://localhost:3030/) in your browser
 
 Licence
 ---
