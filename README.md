@@ -29,3 +29,7 @@ Links
 * [Twitter](https://twitter.com/pure_javascript)
 
 
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/larchanka/smallframework/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
