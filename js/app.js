@@ -1,7 +1,7 @@
 (function (window) {
     'use strict';
     
-    global.app = SmallFramework({
+    global.app = Calibrijs({
         routers : {
             "" : "home",
             "presenters" : "presenters",
@@ -24,9 +24,9 @@
                 this.drawAppLoader();
                 this.request('GET', '/mock_data/presenters.json', function (data) {
                     
-                    _global.template(template, {presenters: _global.sortByKey(data.presenters, 'firstName')});
+                    CJS.template(template, {presenters: CJS.sortByKey(data.presenters, 'firstName')});
                 }, function () {
-                    _global.ajaxErrorTemplate();
+                    CJS.ajaxErrorTemplate();
                 });
             },
         
@@ -37,9 +37,9 @@
                             "</p>";
                 this.drawAppLoader();
                 this.request('GET', '/mock_data/' + id + '.json', function (data) {
-                    _global.template(template, data);
+                    CJS.template(template, data);
                 }, function () {
-                    _global.ajaxErrorTemplate();
+                    CJS.ajaxErrorTemplate();
                 });
             },
             

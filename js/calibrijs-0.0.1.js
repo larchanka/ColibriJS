@@ -1,4 +1,5 @@
-/*! SmallFramework 27-12-2013 */
+/* SmallFramework */
+
 /*
 * Global object factory
 * It returns global `global` object with all properties of `window`
@@ -18,7 +19,7 @@ if (!global.hasOwnProperty('console')) {
     };
 }
 
-var SmallFramework = (function (settings) {
+var Calibrijs = (function (settings) {
     
     return (1, {
         settings : {
@@ -31,11 +32,9 @@ var SmallFramework = (function (settings) {
         requestsCache : {},
         
         init : function () {
-            
-            console.log(this.settings);
-            global._global = this;
+            global.CJS = this;
             _event = this.settings.historyAPI ? 'popstate' : 'hashchange';
-            global.OBJ = document.querySelector('[data-app="true"]') || document.body;
+            global.CJSOBJ = document.querySelector('[data-app="true"]') || document.body;
             
             if ('extends' in settings) {
                 
@@ -47,8 +46,8 @@ var SmallFramework = (function (settings) {
             if (this.settings.historyAPI) {  
 
                 [].forEach.call( document.querySelectorAll('a'), function(el) {
-                    el.removeEventListener("click", _global.bindHistory, false);
-                    el.addEventListener('click', _global.bindHistory, false);
+                    el.removeEventListener("click", CJS.bindHistory, false);
+                    el.addEventListener('click', CJS.bindHistory, false);
                 });
                 this.hashChangeEvent(document.location.pathname.replace(/^\//,''));
             } else {
@@ -57,7 +56,7 @@ var SmallFramework = (function (settings) {
             }
             
             window.addEventListener(_event, function () {
-                return _global.hashChangeEvent(_global.settings.historyAPI ? document.location.pathname.replace(/^\//,'') : document.location.hash.replace('#/',''));
+                return CJS.hashChangeEvent(CJS.settings.historyAPI ? document.location.pathname.replace(/^\//,'') : document.location.hash.replace('#/',''));
             }, false);
         },
         
@@ -86,7 +85,7 @@ var SmallFramework = (function (settings) {
         drawAppLoader : function () {
             
             if (this.settings.rewriteObject) {
-                global.OBJ.innerHTML = "Loading...";
+                global.CJSOBJ.innerHTML = "Loading...";
             }
         },
         
@@ -137,25 +136,32 @@ var SmallFramework = (function (settings) {
             .split("%>").join("p.push('")
             .split("\r").join("\\'")
             + "');}return p.join('');");
-            global.OBJ.innerHTML = data ? fn( data ) : fn;
+            global.CJSOBJ.innerHTML = data ? fn( data ) : fn;
             
             if (this.settings.historyAPI) {  
                               
                 [].forEach.call( document.querySelectorAll('a'), function(el) {
-                    el.removeEventListener("click", _global.bindHistory, false);
-                    el.addEventListener('click', _global.bindHistory, false);
+                    el.removeEventListener("click", CJS.bindHistory, false);
+                    el.addEventListener('click', CJS.bindHistory, false);
                 });
             } else {
                 this.fixLinks();
             }
         },
         
+        /*
+        * Bind links to work with history API
+        * @param {ev} Generates automaticaly
+        */
         bindHistory : function(ev) {
             history.pushState(null, null, this.getAttribute('href'));
-            _global.hashChangeEvent(document.location.pathname.replace(/^\//,''));
+            CJS.hashChangeEvent(document.location.pathname.replace(/^\//,''));
             ev.preventDefault();
         },
         
+        /*
+        * Fix links to work with hash
+        */
         fixLinks : function () {
             [].forEach.call( document.querySelectorAll('a'), function(el) {
                 var href = el.getAttribute('href');
@@ -200,8 +206,8 @@ var SmallFramework = (function (settings) {
 
             xhr.onload = function () {
                 
-                if (_global.settings.cache) {
-                    _global.requestsCache[url] = xhr.response;
+                if (CJS.settings.cache) {
+                    CJS.requestsCache[url] = xhr.response;
                 }
                 callback(JSON.parse(xhr.responseText));
             };
