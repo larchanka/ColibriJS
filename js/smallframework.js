@@ -43,20 +43,12 @@ var SmallFramework = global.SmallFramework = (function (settings) {
             if (this.settings.historyAPI) {  
                               
                 [].forEach.call( document.querySelectorAll('a'), function(el) {
-                    el.addEventListener('click', function(ev) {
-                        history.pushState(null, null, el.getAttribute('href'));
-                        _global.hashChangeEvent(document.location.pathname.replace(/^\//,''));
-                        ev.preventDefault();
-                    }, false);
+                    el.removeEventListener("click", _global.bindHistory, false);
+                    el.addEventListener('click', _global.bindHistory, false);
                 });
+                this.hashChangeEvent(document.location.pathname.replace(/^\//,''));
             } else {
-                
-                [].forEach.call( document.querySelectorAll('a'), function(el) {
-                    var href = el.getAttribute('href');
-                    if (href.indexOf('/') == 0) {
-                        el.setAttribute('href', '#'+href);
-                    }
-                });
+                this.fixLinks();
                 this.hashChangeEvent(document.location.hash ? document.location.hash.replace('#/','') : null);
             }
             
@@ -139,6 +131,31 @@ var SmallFramework = global.SmallFramework = (function (settings) {
             .split("\r").join("\\'")
             + "');}return p.join('');");
             global.OBJ.innerHTML = data ? fn( data ) : fn;
+            
+            if (this.settings.historyAPI) {  
+                              
+                [].forEach.call( document.querySelectorAll('a'), function(el) {
+                    el.removeEventListener("click", _global.bindHistory, false);
+                    el.addEventListener('click', _global.bindHistory, false);
+                });
+            } else {
+                this.fixLinks();
+            }
+        },
+        
+        bindHistory : function(ev) {
+            history.pushState(null, null, this.getAttribute('href'));
+            _global.hashChangeEvent(document.location.pathname.replace(/^\//,''));
+            ev.preventDefault();
+        },
+        
+        fixLinks : function () {
+            [].forEach.call( document.querySelectorAll('a'), function(el) {
+                var href = el.getAttribute('href');
+                if (href.indexOf('/') == 0) {
+                    el.setAttribute('href', '#'+href);
+                }
+            });
         },
         
         /*

@@ -18,7 +18,7 @@
             presenters : function () {
                 var template = "<h1>Presenters</h1>" +
                             "<ul><% for (var i in presenters) { %>" +
-                            "<li><a href=\"#/presenter/<%=presenters[i].accountId%>\"><%=presenters[i].firstName%> <%=presenters[i].lastName%></a></li>" +
+                            "<li><a href=\"/presenter/<%=presenters[i].accountId%>\"><%=presenters[i].firstName%> <%=presenters[i].lastName%></a></li>" +
                             "<% } %></ul>";
                 this.drawAppLoader();
                 this.request('GET', '/mock_data/presenters.json', function (data) {
