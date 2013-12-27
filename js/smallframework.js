@@ -17,7 +17,7 @@ if (!global.hasOwnProperty('console')) {
     };
 }
 
-var SmallFramework = global.SmallFramework = (function (settings) {
+var SmallFramework = (function (settings) {
     
     return (1, {
         settings : {

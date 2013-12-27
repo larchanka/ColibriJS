@@ -4,7 +4,9 @@ SmallFramework
 About
 ---
 
-**SmallFramework** is javascript library for building simple client-side web applications. It has no any dependencies and uses [pure javascript](http://pure-javascript.org/) to work.
+**SmallFramework** is tiny javascript library for building simple client-side web applications. It has no any dependencies and uses [pure javascript](http://pure-javascript.org/) to work.
+
+It includes `templates engine`, `ajax requests method`, `routing` (with hash or history API).
 
 How to start?
 ---
