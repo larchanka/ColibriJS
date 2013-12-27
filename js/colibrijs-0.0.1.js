@@ -26,7 +26,7 @@ if (!global.hasOwnProperty('console')) {
 /* 
 * Main framework code
 */
-var Calibrijs = (function (settings) {
+var Colibrijs = (function (settings) {
     
     return (1, {
         

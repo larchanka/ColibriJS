@@ -3,7 +3,7 @@ var fs = require('fs');
 
 module.exports = (function (grunt) {
 
-    grunt.registerTask('build', "CalibriJS build", function () {
+    grunt.registerTask('build', "ColibriJS build", function () {
         
 
         grunt.initConfig({

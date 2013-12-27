@@ -1,10 +1,10 @@
-CalibriJS
+ColibriJS
 ===
 
 About
 ---
 
-**CalibriJS** is tiny javascript framework for building simple client-side web applications. It has no any dependencies and uses [pure javascript](http://pure-javascript.org/) to work.
+**ColibriJS** is tiny javascript framework for building simple client-side web applications. It has no any dependencies and uses [pure javascript](http://pure-javascript.org/) to work.
 
 It includes `templates engine`, `ajax requests method`, `routing` (with hash or history API).
 
@@ -96,5 +96,5 @@ Links
 
 
 
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/larchanka/calibrijs/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/larchanka/colibrijs/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 

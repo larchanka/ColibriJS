@@ -2,7 +2,7 @@
     'use strict';
     
     // New app announcement 
-    global.app = Calibrijs({
+    global.app = Colibrijs({
         
         // List of routes and callbacks
         routers : {
