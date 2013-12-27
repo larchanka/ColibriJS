@@ -71,6 +71,15 @@ Jetty:
 </Configure>
 ```
 
+Browser support
+---
+
+* IE 9+
+* FF 3.5 +
+* Chrome
+* Opera 11+
+* Safari 4+
+
 Licence
 ---
 

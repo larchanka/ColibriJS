@@ -23,6 +23,7 @@ var SmallFramework = global.SmallFramework = (function (settings) {
         settings : {
             routers : settings.routers || {},
             cache : settings.cache !== undefined ? settings.cache : true,
+            rewriteObject : settings.rewriteObject !== undefined ? settings.rewriteObject : true,
             historyAPI : settings.historyAPI == 'auto' ? (typeof history.pushState != 'undefined' ? true : false) : settings.historyAPI
         },
         templatesCache : {},
@@ -82,7 +83,10 @@ var SmallFramework = global.SmallFramework = (function (settings) {
         },
         
         drawAppLoader : function () {
-            global.OBJ.innerHTML = "Loading...";
+            
+            if (this.settings.rewriteObject) {
+                global.OBJ.innerHTML = "Loading...";
+            }
         },
         
         /*

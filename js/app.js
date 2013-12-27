@@ -8,6 +8,7 @@
             "presenter/:id" : "presenter"
         },
         historyAPI : 'auto',
+        rewriteObject : true,
         
         extends : {
             home : function () {
