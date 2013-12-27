@@ -17,6 +17,60 @@ You need some server to be installed. Node.js server:
 * enter `cd PATH/TO/FOLDER/WITH/SMALLFRAMEWORK && nws` in Terminal / Console / CMD
 * open [`http://localhost:3030/`](http://localhost:3030/) in your browser
 
+HTML5 pushstate (history) server-side support
+---
+
+Apache server:
+
+```
+<ifModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} !index
+    RewriteRule (.*) index.html [L]
+</ifModule>
+```
+
+Nginx server:
+
+```
+location  index {
+}
+
+location / {
+  if (!-e $request_filename){
+    rewrite ^(.*)$ /index.html break;
+  }
+}
+```
+
+Jetty:
+
+```
+<Configure id="Server" class="org.eclipse.jetty.server.Server">
+
+    <New id="Rewrite" class="org.eclipse.jetty.rewrite.handler.RewriteHandler">
+      <Set name="rewriteRequestURI">true</Set>
+      <Set name="rewritePathInfo">false</Set>
+      <Set name="originalPathAttribute">requestedPath</Set>
+      
+      <!-- Write all rules for your URLs -->
+      <Call name="addRule">
+        <Arg>
+          <New class="org.eclipse.jetty.rewrite.handler.RewriteRegexRule">
+            <Set name="regex">/presenter/(.*)</Set>
+            <Set name="replacement">/index.html</Set>
+          </New>
+        </Arg>
+      </Call>
+      
+    </New>
+    
+    <Set name="handler"><Ref id="Rewrite" /></Set>
+</Configure>
+```
+
 Licence
 ---
 

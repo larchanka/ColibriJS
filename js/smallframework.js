@@ -23,12 +23,14 @@ var SmallFramework = global.SmallFramework = (function (settings) {
         settings : {
             routers : settings.routers || {},
             cache : settings.cache !== undefined ? settings.cache : true,
-            historyAPI : settings.historyAPI ? settings.historyAPI : false
+            historyAPI : settings.historyAPI == 'auto' ? (typeof history.pushState != 'undefined' ? true : false) : settings.historyAPI
         },
         templatesCache : {},
         requestsCache : {},
         
         init : function () {
+            
+            console.log(this.settings);
             global._global = this;
             _event = this.settings.historyAPI ? 'popstate' : 'hashchange';
             global.OBJ = document.querySelector('[data-app="true"]') || document.body;
@@ -41,7 +43,7 @@ var SmallFramework = global.SmallFramework = (function (settings) {
             }
             
             if (this.settings.historyAPI) {  
-                              
+
                 [].forEach.call( document.querySelectorAll('a'), function(el) {
                     el.removeEventListener("click", _global.bindHistory, false);
                     el.addEventListener('click', _global.bindHistory, false);

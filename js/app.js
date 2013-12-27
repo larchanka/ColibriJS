@@ -7,7 +7,7 @@
             "presenters" : "presenters",
             "presenter/:id" : "presenter"
         },
-        historyAPI : false,
+        historyAPI : 'auto',
         
         extends : {
             home : function () {
