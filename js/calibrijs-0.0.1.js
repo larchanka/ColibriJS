@@ -8,6 +8,10 @@ var global = (function () {
     return this || (1, eval)('this');
 }());
 
+/*
+* Check if `console` object is available
+* else create own
+*/
 if (!global.hasOwnProperty('console')) {
     global.console = {
         log : function (text) {
@@ -19,18 +23,32 @@ if (!global.hasOwnProperty('console')) {
     };
 }
 
+/* 
+* Main framework code
+*/
 var Calibrijs = (function (settings) {
     
     return (1, {
+        
+        // Settings {settings} Imported or default
         settings : {
             routers : settings.routers || {},
             cache : settings.cache !== undefined ? settings.cache : true,
             rewriteObject : settings.rewriteObject !== undefined ? settings.rewriteObject : true,
             historyAPI : settings.historyAPI == 'auto' ? (typeof history.pushState != 'undefined' ? true : false) : settings.historyAPI
         },
+        
+        // Cache object for templates
         templatesCache : {},
+        
+        // Cache object for AJAX requests
         requestsCache : {},
         
+        /* 
+        * Initialization
+        * Define extentions
+        * Create listeners for address changes
+        */
         init : function () {
             global.CJS = this;
             _event = this.settings.historyAPI ? 'popstate' : 'hashchange';
@@ -60,6 +78,10 @@ var Calibrijs = (function (settings) {
             }, false);
         },
         
+        /*
+        * Detect method for path
+        * @param {route} Route user is in
+        */
         hashChangeEvent : function (route) {
             var locationRow = route ? route.split('/') : [];
             
@@ -70,6 +92,10 @@ var Calibrijs = (function (settings) {
             return false;
         },
         
+        /*
+        * Detect route from page address
+        * @param {query} Page address w/out domain
+        */
         findRouter : function (query) {
             var routerRow = [];
             
@@ -82,6 +108,9 @@ var Calibrijs = (function (settings) {
             return this.settings.routers[''];
         },
         
+        /*
+        * Add `Loading...` to app's object
+        */
         drawAppLoader : function () {
             
             if (this.settings.rewriteObject) {

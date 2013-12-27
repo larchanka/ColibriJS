@@ -4,7 +4,7 @@ CalibriJS
 About
 ---
 
-**CalibriJS** is tiny javascript library for building simple client-side web applications. It has no any dependencies and uses [pure javascript](http://pure-javascript.org/) to work.
+**CalibriJS** is tiny javascript framework for building simple client-side web applications. It has no any dependencies and uses [pure javascript](http://pure-javascript.org/) to work.
 
 It includes `templates engine`, `ajax requests method`, `routing` (with hash or history API).
 

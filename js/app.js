@@ -1,16 +1,26 @@
 (function (window) {
     'use strict';
     
+    // New app announcement 
     global.app = Calibrijs({
+        
+        // List of routes and callbacks
         routers : {
             "" : "home",
             "presenters" : "presenters",
             "presenter/:id" : "presenter"
         },
+        
+        // History API state
+        // true | false | 'auto'
         historyAPI : 'auto',
         rewriteObject : true,
         
+        // Extentions
+        // All method are available in `this` object (global.CJS or CJS)
         extends : {
+            
+            // Callbacks for routes
             home : function () {
                 var template = "<h1>Home</h1>";
                 this.template(template, {});
@@ -43,6 +53,8 @@
                 });
             },
             
+            
+            // Method that is called after AJAX error
             ajaxErrorTemplate : function () {
                 var template = "<h3>Ajax error occured!</h3>";
                 this.template(template, {});
