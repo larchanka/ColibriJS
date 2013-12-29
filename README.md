@@ -1,6 +1,8 @@
 ColibriJS
 ===
 
+![](https://raw.github.com/larchanka/ColibriJS/master/images/colibrijs-logo.png)
+
 About
 ---
 
