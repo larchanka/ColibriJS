@@ -14,6 +14,26 @@
     </nav>
     
     <div data-app="true" class="content"></div>
+    
+    <!--! TEMPLATES !-->
+    
+    <script type="text/x-tmpl" id="tplHome">
+    <h1>Home</h1>
+    </script>
+    
+    <script type="text/x-tmpl" id="tplPresenters">
+    <h1>Presenters</h1>
+    <ul><% for (var i in presenters) { %>
+        <li><a href="/presenter/<%=presenters[i].accountId%>"><%=presenters[i].firstName%> <%=presenters[i].lastName%></a></li>
+    <% } %></ul>
+    </script>
+    
+    <script type="text/x-tmpl" id="tplPresenter">
+    <h1>Presenter <%=presenter.firstName%> <%=presenter.lastName%></h1>
+    <p>
+    <br /><%=presenter.description%>
+    </p>
+    </script>
 </body>
 <script type="text/javascript" src="/js/colibrijs-0.0.1.js"></script>
 <script type="text/javascript" src="/js/app.js"></script>

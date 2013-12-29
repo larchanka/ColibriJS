@@ -179,6 +179,14 @@ var Colibrijs = (function (settings) {
         },
         
         /*
+        * Get template's HTML
+        * @param {tplId} Id of the template's element
+        */
+        getTemplate : function (tplId) {
+            return document.getElementById(tplId).innerHTML;
+        },
+        
+        /*
         * Bind links to work with history API
         * @param {ev} Generates automaticaly
         */

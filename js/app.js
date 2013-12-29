@@ -6,7 +6,7 @@
         
         // List of routes and callbacks
         routers : {
-            "" : "home",S
+            "" : "home",
             "presenters" : "presenters",
             "presenter/:id" : "presenter"
         },
@@ -22,15 +22,12 @@
             
             // Callbacks for routes
             home : function () {
-                var template = "<h1>Home</h1>";
+                var template = CJS.getTemplate('tplHome');
                 this.template(template, {});
             },
         
             presenters : function () {
-                var template = "<h1>Presenters</h1>" +
-                            "<ul><% for (var i in presenters) { %>" +
-                            "<li><a href=\"/presenter/<%=presenters[i].accountId%>\"><%=presenters[i].firstName%> <%=presenters[i].lastName%></a></li>" +
-                            "<% } %></ul>";
+                var template = CJS.getTemplate('tplPresenters');
                 this.drawAppLoader();
                 this.request('GET', '/mock_data/presenters.json', function (data) {
                     
@@ -41,10 +38,7 @@
             },
         
             presenter : function (id) {
-                var template = "<h1>Presenter <%=presenter.firstName%> <%=presenter.lastName%></h1>" +
-                            "<p>" +
-                            "<br /><%=presenter.description%>" +
-                            "</p>";
+                var template = CJS.getTemplate('tplPresenter');
                 this.drawAppLoader();
                 this.request('GET', '/mock_data/' + id + '.json', function (data) {
                     CJS.template(template, data);
