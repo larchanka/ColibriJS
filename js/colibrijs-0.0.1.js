@@ -1,4 +1,4 @@
-/* SmallFramework */
+/* ColibriJS */
 
 /*
 * Global object factory

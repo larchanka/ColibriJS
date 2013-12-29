@@ -6,7 +6,7 @@
         
         // List of routes and callbacks
         routers : {
-            "" : "home",
+            "" : "home",S
             "presenters" : "presenters",
             "presenter/:id" : "presenter"
         },
@@ -16,7 +16,7 @@
         historyAPI : 'auto',
         rewriteObject : true,
         
-        // Extentions
+        // Extensions
         // All method are available in `this` object (global.CJS or CJS)
         extends : {
             
