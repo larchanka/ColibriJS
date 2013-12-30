@@ -48,7 +48,7 @@
             },
             
             
-            // Method that is called after AJAX error
+            // Method is called after AJAX error
             ajaxErrorTemplate : function () {
                 var template = "<h3>Ajax error occured!</h3>";
                 this.template(template, {});

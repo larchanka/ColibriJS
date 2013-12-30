@@ -27,6 +27,7 @@ if (!global.hasOwnProperty('console')) {
 * Main framework code
 */
 var Colibrijs = (function (settings) {
+    'user strict';
     
     return (1, {
         
@@ -51,7 +52,8 @@ var Colibrijs = (function (settings) {
         */
         init : function () {
             global.CJS = this;
-            _event = this.settings.historyAPI ? 'popstate' : 'hashchange';
+            var _event = this.settings.historyAPI ? 'popstate' : 'hashchange',
+                _url = CJS.settings.historyAPI ? document.location.pathname.replace(/^\//,'') : document.location.hash.replace('#/','');
             global.CJSOBJ = document.querySelector('[data-app="true"]') || document.body;
             
             if ('extends' in settings) {
@@ -67,14 +69,13 @@ var Colibrijs = (function (settings) {
                     el.removeEventListener("click", CJS.bindHistory, false);
                     el.addEventListener('click', CJS.bindHistory, false);
                 });
-                this.hashChangeEvent(document.location.pathname.replace(/^\//,''));
             } else {
                 this.fixLinks();
-                this.hashChangeEvent(document.location.hash ? document.location.hash.replace('#/','') : null);
             }
+            this.hashChangeEvent(_url);
             
             window.addEventListener(_event, function () {
-                return CJS.hashChangeEvent(CJS.settings.historyAPI ? document.location.pathname.replace(/^\//,'') : document.location.hash.replace('#/',''));
+                return CJS.hashChangeEvent(_url);
             }, false);
         },
         
