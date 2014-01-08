@@ -52,9 +52,9 @@ var Colibrijs = (function (settings) {
         */
         init : function () {
             global.CJS = this;
-            var _event = this.settings.historyAPI ? 'popstate' : 'hashchange',
-                _url = CJS.settings.historyAPI ? document.location.pathname.replace(/^\//,'') : document.location.hash.replace('#/','');
+            var _event = this.settings.historyAPI ? 'popstate' : 'hashchange';
             global.CJSOBJ = document.querySelector('[data-app="true"]') || document.body;
+            this.setEvents();
             
             if ('extends' in settings) {
                 
@@ -72,11 +72,26 @@ var Colibrijs = (function (settings) {
             } else {
                 this.fixLinks();
             }
-            this.hashChangeEvent(_url);
+            this.hashChangeEvent(CJS.settings.historyAPI ? document.location.pathname.replace(/^\//,'') : document.location.hash.replace('#/',''));
             
             window.addEventListener(_event, function () {
-                return CJS.hashChangeEvent(_url);
+                return CJS.hashChangeEvent(CJS.settings.historyAPI ? document.location.pathname.replace(/^\//,'') : document.location.hash.replace('#/',''));
             }, false);
+        },
+        
+        setEvents : function () {
+
+            global.templateLoaded = new CustomEvent(
+	            "template:loaded", 
+	            {
+		            detail: {
+			            message: "Template is loaded",
+			            time: new Date(),
+		            },
+		            bubbles: true,
+		            cancelable: true
+	            }
+            );
         },
         
         /*
@@ -167,6 +182,8 @@ var Colibrijs = (function (settings) {
             .split("\r").join("\\'")
             + "');}return p.join('');");
             global.CJSOBJ.innerHTML = data ? fn( data ) : fn;
+
+            global.CJSOBJ.dispatchEvent(templateLoaded);
             
             if (this.settings.historyAPI) {  
                               

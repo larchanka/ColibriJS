@@ -1,6 +1,5 @@
 (function (window) {
     'use strict';
-    
     // New app announcement 
     global.app = Colibrijs({
         
